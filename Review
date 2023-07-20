@@ -1,0 +1,115 @@
+#in order to reverse a string x we use:
+x = x[::-1]
+
+#pure function is when we dont change the original funcation. we copy a function and use them
+#for example:
+        def add to list(1st,item):
+        
+        n1 = 1st.copy()
+        n1.append(item)
+        return n1
+   # here we can see that instead of adding to the original item, we copied the original item and added to it.
+   # In this case we can use the original one if we wanted in the future.
+
+
+# lets say few strings are given and we need to find and display the words that start with c. We use map or filter func.
+menu = ["car,case,pipe,gay,elivate,danger"]
+
+def fil(cword):
+  if cword[0]=="c":
+    return cword
+
+filter_c = filter(fil,menu)
+print(filter_c) # this prints the filter object address hence we run it through for loop.
+for x in filter_c:
+  print(x)
+
+
+#lets say we want to create a class that has the food recipe and contents: we do this:
+class recipe():
+  def __init__(self,dish, items, time):
+    self.dish = dish
+    self.items = items
+    self.time = time
+
+  def contents(self):
+    print("the food"+ self.dish+"has"+ str(self.items)+ "and takes"+ str(self.time)+ "to complete.")
+
+pizza = recipe("pizza",["cheeses", "sauce", "bread"],45)
+pasta = recipe("pasta",["noodle","sauce","cheese"],55)
+
+print(pizza.items)
+print(pasta.items)
+print(pizza.contents())
+#the output will look like this: 
+#['cheeses', 'sauce', 'bread']
+#['noodle', 'sauce', 'cheese']
+#the foodpizzahas['cheeses', 'sauce', 'bread']and takes45to complete.
+#None
+
+
+#now we use instance method in class:
+#we create a payment program to print if its paid or not.
+class Paylips():
+  def __init__(self, name, payment, amount):
+    self.name = name
+    self.payment = payment
+    self.amount = amount
+
+  def pay(self): #this is the instance function we wrote for the program. upon invoking it helps us update the data without erasing the old one.
+    self.payment = "yes"
+
+  def status(self):
+    if self.payment == "yes":
+      return self.name +"is paid "+ str(self.amount)
+    else:
+      return self.name +"not paid"
+
+nate = Paylips("nate ","no",1000)
+roger = Paylips("roger ","no",3000)
+
+print(nate.status(),"\n",roger.status()) #until here its just a normal class and we havent used pay() yet.
+
+nate.pay() #this is the instance. We use this to update the payment without altering the actual data. here we have the previous data as weel as the new one.
+print("after payment:")
+print(nate.status(),"\n",roger.status())
+#the output for this will look like:
+                            nate not paid 
+                            roger not paid
+                            after payment:
+                            nate is paid 1000 
+                            roger not paid
+
+
+
+# Now we are going to use parent and child classes to reduce the code for a chef empoyee frogram.
+# Over here Employee is the parent class and we used the parent class and passed its feature to the child classes further.
+class Employees(): # Parent class
+  def __init__(self, name, last):
+    self.name = name
+    self.last = last
+
+class Supervisors(Employees): # Child class 1. Here we can see that we dont have to type name and last anymore as it inherits the parent class property.
+  def __init__(self, name, last,password):
+    self.password = password
+
+class chefs(Employees): # Child class 2
+  def leave_request(self,days):
+    return "May I request " + str(days) + "days off"
+
+adrian = Supervisors("Adrian", "A","Poop")
+
+emily = chefs("Emily","E")
+david = chefs("David", "D")
+
+print(emily.leave_request(3))
+print(adrian.password)
+print(emily.name)
+
+Output: May I request 3days off
+Poop
+Emily
+
+
+
+				
